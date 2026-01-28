@@ -10,7 +10,7 @@ interface MeetingTranscriptionProps {
 
 const MeetingTranscription = ({ meetingName = 'Meeting' }: MeetingTranscriptionProps) => {
     const [isEnabled, setIsEnabled] = useState(false);
-    const { transcript, transcriptionLines, isListening, error, clearTranscript, getFullTranscript } = useTranscription(isEnabled);
+    const { currentTranscript, transcriptionLines, isListening, error, clearTranscript, getFullTranscript } = useTranscription(isEnabled);
 
     const toggleTranscription = () => {
         setIsEnabled(!isEnabled);
@@ -30,10 +30,10 @@ const MeetingTranscription = ({ meetingName = 'Meeting' }: MeetingTranscriptionP
     return (
         <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-40 w-full max-w-3xl px-4">
             {/* Caption Display */}
-            {isEnabled && transcript && (
+            {isEnabled && currentTranscript && (
                 <div className="bg-black/90 backdrop-blur-sm rounded-lg px-6 py-3 mb-3 border border-gray-700">
                     <p className="text-white text-center text-lg leading-relaxed">
-                        {transcript}
+                        {currentTranscript}
                     </p>
                 </div>
             )}
@@ -44,8 +44,8 @@ const MeetingTranscription = ({ meetingName = 'Meeting' }: MeetingTranscriptionP
                     <button
                         onClick={toggleTranscription}
                         className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all ${isEnabled
-                                ? 'bg-blue-1 text-white hover:bg-blue-1/80'
-                                : 'bg-dark-3 text-gray-400 hover:bg-dark-2'
+                            ? 'bg-blue-1 text-white hover:bg-blue-1/80'
+                            : 'bg-dark-3 text-gray-400 hover:bg-dark-2'
                             }`}
                     >
                         {isEnabled ? (
