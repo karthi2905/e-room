@@ -1,19 +1,57 @@
 import type { Config } from "tailwindcss";
 
-const config: Config = {
-  content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
-      },
-    },
-  },
-  plugins: [],
-};
-export default config;
+export default {
+	darkMode: ["class"],
+	content: [
+		"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+		"./components/**/*.{js,ts,jsx,tsx,mdx}",
+		"./app/**/*.{js,ts,jsx,tsx,mdx}",
+	],
+	theme: {
+		extend: {
+
+			colors: {
+				dark: {
+					1: '#1C1F2E',
+					2: '#161925',
+					3: '#252A41',
+				},
+				blue: {
+					1: '#0E78F9',
+				},
+				sky: {
+					1: '#c9ddff',
+				},
+				orange: {
+					1: "#ff742e",
+				},
+				purple: {
+					1: '#830EF9'
+				},
+				yellow: {
+					1: '#F9A90E'
+				}
+
+			},
+			keyframes: {
+				'accordion-down': {
+					from: { height: '0' },
+					to: { height: 'var(--radix-accordion-content-height)' },
+				},
+				'accordion-up': {
+					from: { height: 'var(--radix-accordion-content-height)' },
+					to: { height: '0' },
+				},
+			},
+			animation: {
+				'accordion-down': 'accordion-down 0.2s ease-out',
+				'accordion-up': 'accordion-up 0.2s ease-out',
+			},
+			backgroundImage: {
+				hero: "url('/images/hero-background.png')"
+			}
+		},
+
+		plugins: [require("tailwindcss-animate")],
+	}
+} satisfies Config;
