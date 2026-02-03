@@ -81,6 +81,16 @@
   color: white;
 }
 
+/* Hide Clerk branding footer */
+.cl-footer,
+.cl-footerAction,
+.cl-footerActionText,
+.cl-footerPages,
+.cl-card__footer,
+.cl-formFooter {
+  display: none !important;
+}
+
 /* =============================== */
 
 @layer utilities {

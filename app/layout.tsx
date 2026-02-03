@@ -45,7 +45,10 @@ export default function RootLayout({
             socialButtonsBlockButton: "bg-dark-3 border-dark-3 hover:bg-dark-2",
             formFieldLabel: "text-white",
             formFieldInput: "bg-dark-3 border-dark-3 text-white",
+            footer: "hidden",
             footerAction: "hidden",
+            footerActionText: "hidden",
+            footerPages: "hidden",
           },
         }}
       >
