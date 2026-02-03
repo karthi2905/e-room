@@ -2,14 +2,23 @@
 
 import MeetingTypeList from '@/components/MeetingTypeList';
 import { useGetCalls } from '@/hooks/useGetCalls';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Home = () => {
-  const now = new Date();
+  const [currentTime, setCurrentTime] = useState(new Date());
   const { upcomingCalls } = useGetCalls();
 
-  const time = now.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }).replace('pm', 'PM').replace('am', 'AM');
-  const date = (new Intl.DateTimeFormat('en-IN', { dateStyle: 'full', timeZone: 'Asia/kolkata' })).format(now);
+  // Update time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const time = currentTime.toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit', hour12: true }).replace('pm', 'PM').replace('am', 'AM');
+  const date = (new Intl.DateTimeFormat('en-IN', { dateStyle: 'full', timeZone: 'Asia/kolkata' })).format(currentTime);
 
   // Get the next upcoming meeting
   const nextMeeting = upcomingCalls && upcomingCalls.length > 0
